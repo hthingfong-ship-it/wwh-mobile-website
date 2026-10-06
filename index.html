@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#113f2c" />
+  <title>WHH Group — Food Supply & Frozen Solutions</title>
+  <meta name="description" content="WHH Group — food import, distribution, B2B food service, warehousing and frozen food solutions since 1995." />
+  <style>
+    :root{
+      --green:#113f2c;
+      --green-2:#1d5a40;
+      --sage:#dfe9df;
+      --cream:#f6f3ec;
+      --ink:#151816;
+      --muted:#68716b;
+      --line:rgba(21,24,22,.10);
+      --white:#fff;
+      --radius:22px;
+      --shadow:0 12px 30px rgba(17,63,44,.10);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--cream)}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--ink);
+      background:var(--cream);
+      overflow-x:hidden;
+    }
+    img{display:block;width:100%;height:auto}
+    a{text-decoration:none;color:inherit}
+    button,input,select,textarea{font:inherit}
+    .site{width:100%;max-width:520px;margin:0 auto;background:var(--cream);min-height:100vh;position:relative}
+    .topbar{
+      position:sticky;top:0;z-index:50;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:14px 18px calc(14px + env(safe-area-inset-top));
+      background:rgba(246,243,236,.92);backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(21,24,22,.07)
+    }
+    .brand{display:flex;align-items:center;gap:10px}
+    .mark{
+      width:38px;height:38px;border-radius:10px;background:#e31e24;color:#fff;
+      display:grid;place-items:center;font-weight:900;letter-spacing:-2px;font-size:16px
+    }
+    .brand-copy{line-height:1.05}
+    .brand-copy strong{display:block;font-size:14px;letter-spacing:.02em}
+    .brand-copy span{font-size:10px;color:var(--muted)}
+    .menu{width:40px;height:40px;border:1px solid var(--line);border-radius:12px;background:#fff;display:grid;place-items:center}
+    .menu span,.menu span:before,.menu span:after{
+      content:"";display:block;width:17px;height:1.5px;background:var(--ink);position:relative
+    }
+    .menu span:before{position:absolute;top:-5px}
+    .menu span:after{position:absolute;top:5px}
+    .drawer{
+      position:fixed;inset:0;z-index:80;background:rgba(14,25,19,.88);
+      opacity:0;pointer-events:none;transition:.25s
+    }
+    .drawer.open{opacity:1;pointer-events:auto}
+    .drawer-panel{
+      position:absolute;right:0;top:0;height:100%;width:min(84vw,390px);
+      background:var(--cream);padding:24px;transform:translateX(100%);transition:.3s
+    }
+    .drawer.open .drawer-panel{transform:none}
+    .drawer-close{float:right;border:0;background:#fff;width:40px;height:40px;border-radius:12px;font-size:22px}
+    .drawer nav{padding-top:70px;display:grid;gap:8px}
+    .drawer nav a{padding:15px 0;border-bottom:1px solid var(--line);font-size:22px;font-weight:700}
+    .hero{padding:18px 18px 0}
+    .hero-media{position:relative;border-radius:28px;overflow:hidden;min-height:610px;background:#20352b;box-shadow:var(--shadow)}
+    .hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .hero-media:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,24,16,.10),rgba(8,24,16,.18) 38%,rgba(8,24,16,.88) 88%)}
+    .hero-content{position:absolute;z-index:2;left:22px;right:22px;bottom:22px;color:#fff}
+    .eyebrow{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+    .hero h1{font-size:46px;line-height:.94;letter-spacing:-.055em;margin:10px 0 14px;max-width:330px}
+    .hero p{font-size:15px;line-height:1.55;color:rgba(255,255,255,.86);margin:0 0 18px;max-width:340px}
+    .cta-row{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{min-height:48px;padding:0 16px;border-radius:14px;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;border:1px solid transparent}
+    .btn-light{background:#fff;color:var(--green)}
+    .btn-ghost{border-color:rgba(255,255,255,.55);color:#fff;background:rgba(255,255,255,.06)}
+    .section{padding:64px 18px 0}
+    .section.compact{padding-top:36px}
+    .section-head{margin-bottom:22px}
+    .kicker{font-size:11px;text-transform:uppercase;letter-spacing:.15em;font-weight:900;color:var(--green-2)}
+    h2{font-size:34px;line-height:1.02;letter-spacing:-.045em;margin:8px 0 10px}
+    .lead{font-size:15px;line-height:1.62;color:var(--muted);margin:0}
+    .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .stat{background:#fff;padding:18px;border-radius:18px;border:1px solid var(--line)}
+    .stat strong{display:block;font-size:28px;letter-spacing:-.04em;color:var(--green)}
+    .stat span{font-size:12px;line-height:1.35;color:var(--muted)}
+    .story-card{background:#fff;border-radius:24px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow)}
+    .story-copy{padding:20px}
+    .story-copy h3,.card h3{font-size:22px;letter-spacing:-.03em;margin:0 0 8px}
+    .story-copy p,.card p{font-size:14px;line-height:1.6;color:var(--muted);margin:0}
+    .split-card{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .mini-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px}
+    .mini-card b{display:block;font-size:14px;margin-bottom:6px}
+    .mini-card span{font-size:12px;line-height:1.4;color:var(--muted)}
+    .category-scroll{display:grid;grid-auto-flow:column;grid-auto-columns:76%;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px}
+    .category-scroll::-webkit-scrollbar{display:none}
+    .cat{position:relative;height:365px;border-radius:24px;overflow:hidden;scroll-snap-align:start;background:#ddd}
+    .cat img{width:100%;height:100%;object-fit:cover}
+    .cat:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.75))}
+    .cat-copy{position:absolute;z-index:2;left:18px;right:18px;bottom:18px;color:#fff}
+    .cat-copy small{text-transform:uppercase;letter-spacing:.12em;font-weight:800;font-size:10px}
+    .cat-copy h3{font-size:28px;line-height:1;margin:6px 0 8px}
+    .cat-copy p{font-size:13px;line-height:1.45;color:rgba(255,255,255,.82);margin:0}
+    .dark{background:var(--green);color:#fff;margin-top:64px;padding:64px 18px;border-radius:34px 34px 0 0}
+    .dark .kicker{color:#a9cfb4}
+    .dark h2{color:#fff}
+    .dark .lead{color:rgba(255,255,255,.72)}
+    .proof-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+    .proof{border:1px solid rgba(255,255,255,.15);border-radius:18px;padding:16px;background:rgba(255,255,255,.05)}
+    .proof .n{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#a9cfb4;margin-bottom:20px}
+    .proof b{display:block;font-size:16px;margin-bottom:6px}
+    .proof span{font-size:12px;line-height:1.4;color:rgba(255,255,255,.68)}
+    .visual-block{border-radius:24px;overflow:hidden;margin-top:18px}
+    .visual-block img{height:300px;object-fit:cover}
+    .industries{display:grid;gap:10px}
+    .industry{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;gap:14px;align-items:flex-start}
+    .dot{width:36px;height:36px;border-radius:12px;background:var(--sage);display:grid;place-items:center;color:var(--green);font-weight:900;flex:0 0 auto}
+    .industry b{font-size:15px;display:block;margin-bottom:4px}
+    .industry span{font-size:12px;color:var(--muted);line-height:1.4}
+    .journey{display:grid;gap:10px}
+    .step{display:grid;grid-template-columns:46px 1fr;gap:12px;align-items:start}
+    .step-num{width:46px;height:46px;border-radius:14px;background:var(--green);color:#fff;display:grid;place-items:center;font-weight:900}
+    .step-body{background:#fff;border-radius:16px;padding:14px;border:1px solid var(--line)}
+    .step-body b{font-size:14px}
+    .step-body p{font-size:12px;line-height:1.45;color:var(--muted);margin:4px 0 0}
+    .cert-box{background:#fff;border-radius:22px;padding:14px;border:1px solid var(--line)}
+    .cert-box img{border-radius:14px;background:#fff}
+    .inquiry{background:#0f2d21;color:#fff;margin-top:64px;padding:56px 18px calc(84px + env(safe-area-inset-bottom));}
+    .inquiry .kicker{color:#a9cfb4}
+    .inquiry h2{color:#fff}
+    .inquiry p{color:rgba(255,255,255,.72)}
+    form{display:grid;gap:11px;margin-top:22px}
+    label{font-size:11px;text-transform:uppercase;letter-spacing:.10em;color:#b7c9bd;font-weight:800}
+    input,select,textarea{
+      width:100%;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.07);color:#fff;
+      border-radius:14px;padding:14px;outline:none
+    }
+    select option{color:#111}
+    textarea{min-height:110px;resize:vertical}
+    .submit{margin-top:6px;border:0;background:#fff;color:var(--green);font-weight:900;padding:15px;border-radius:14px}
+    .fine{font-size:10px;line-height:1.45;color:rgba(255,255,255,.46)!important;margin-top:9px!important}
+    footer{background:#0b2018;color:#fff;padding:28px 18px 90px}
+    footer .foot-brand{font-size:26px;font-weight:900;letter-spacing:-.04em}
+    footer p{font-size:12px;line-height:1.55;color:rgba(255,255,255,.62);max-width:330px}
+    .sticky-cta{
+      position:fixed;z-index:45;left:50%;transform:translateX(-50%);
+      width:min(calc(100% - 24px),496px);bottom:12px;
+      padding:8px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);
+      border:1px solid var(--line);box-shadow:0 10px 25px rgba(0,0,0,.14);border-radius:18px;
+      display:grid;grid-template-columns:1fr 1fr;gap:8px
+    }
+    .sticky-cta a{height:46px;border-radius:12px;display:grid;place-items:center;font-size:13px;font-weight:900}
+    .sticky-cta a:first-child{background:#eef3ef;color:var(--green)}
+    .sticky-cta a:last-child{background:var(--green);color:#fff}
+    .note{font-size:11px;color:var(--muted);margin-top:10px}
+    @media(min-width:521px){
+      body{background:#dcd9d1}
+      .site{box-shadow:0 0 0 1px rgba(0,0,0,.04),0 30px 80px rgba(0,0,0,.15)}
+    }
+  </style>
+</head>
+<body>
+<div class="site">
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="WHH Group home">
+      <div class="mark">WHH</div>
+      <div class="brand-copy">
+        <strong>WHH Group</strong>
+        <span>Food Supply • Since 1995</span>
+      </div>
+    </a>
+    <button class="menu" id="menuBtn" aria-label="Open menu"><span></span></button>
+  </header>
+
+  <div class="drawer" id="drawer">
+    <div class="drawer-panel">
+      <button class="drawer-close" id="closeBtn" aria-label="Close menu">×</button>
+      <nav>
+        <a href="#about">About WHH</a>
+        <a href="#frozen">Frozen Food</a>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#industries">Industries</a>
+        <a href="#contact">Request a Quote</a>
+      </nav>
+    </div>
+  </div>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-media">
+        <img src="assets/hero-logistics.png" alt="Cold-chain food distribution and refrigerated logistics" />
+        <div class="hero-content">
+          <div class="eyebrow">Food supply built for business</div>
+          <h1>Reliable supply. Ready to scale.</h1>
+          <p>Food sourcing, distribution and frozen-food solutions backed by over three decades of industry experience.</p>
+          <div class="cta-row">
+            <a class="btn btn-light" href="#frozen">Explore Frozen Food</a>
+            <a class="btn btn-ghost" href="#contact">Talk to Our Team</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="stats">
+        <div class="stat"><strong>30+</strong><span>Years in the food industry</span></div>
+        <div class="stat"><strong>1,600+</strong><span>Retail & convenience-store points</span></div>
+        <div class="stat"><strong>66,000</strong><span>sq. ft. facility infrastructure</span></div>
+        <div class="stat"><strong>B2B</strong><span>Hotels, chains, cafeterias & food service</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="section-head">
+        <div class="kicker">About WHH</div>
+        <h2>Offline strength, made visible online.</h2>
+        <p class="lead">WHH Group has operated in food import/export, processing, wholesale and retail since 1995. The website is designed to make that existing scale, credibility and operational capability easy to understand at first contact.</p>
+      </div>
+      <article class="story-card">
+        <img src="assets/whh-building.png" alt="WHH Group building" />
+        <div class="story-copy">
+          <h3>Established in 1995</h3>
+          <p>From long-standing customer relationships to warehousing, logistics and multi-channel distribution, WHH’s advantage is broader than product alone.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" id="frozen">
+      <div class="section-head">
+        <div class="kicker">Growth focus</div>
+        <h2>Frozen food solutions for F&B operators.</h2>
+        <p class="lead">A clearer digital entry point for buyers looking for dependable meat, seafood and frozen products with cold-chain support.</p>
+      </div>
+      <div class="category-scroll">
+        <article class="cat">
+          <img src="assets/frozen-food-range.png" alt="Frozen poultry, beef and seafood" />
+          <div class="cat-copy"><small>Core range</small><h3>Meat & Poultry</h3><p>Commercial supply for restaurants, kitchens and growing F&B businesses.</p></div>
+        </article>
+        <article class="cat">
+          <img src="assets/whh-frozen.png" alt="WHH frozen products" />
+          <div class="cat-copy"><small>Cold-chain supply</small><h3>Seafood & Frozen</h3><p>Imported frozen products supported by refrigerated storage and handling.</p></div>
+        </article>
+        <article class="cat">
+          <img src="assets/cold-storage.png" alt="Cold storage warehouse" />
+          <div class="cat-copy"><small>Operational support</small><h3>Storage & Fulfilment</h3><p>Temperature-controlled infrastructure for consistent supply and replenishment.</p></div>
+        </article>
+      </div>
+      <p class="note">Exact SKU list, MOQ and current business pricing can be shared through WHH’s sales team.</p>
+    </section>
+
+    <section class="dark" id="capabilities">
+      <div class="kicker">Why WHH</div>
+      <h2>More than a frozen-food catalogue.</h2>
+      <p class="lead">For procurement buyers, the real question is not only what WHH can sell — but whether WHH can supply consistently, safely and at scale.</p>
+
+      <div class="proof-grid">
+        <div class="proof"><div class="n">01</div><b>Supply Experience</b><span>Three decades across food trading, retail and food service.</span></div>
+        <div class="proof"><div class="n">02</div><b>In-house Logistics</b><span>Distribution and replenishment supported by internal logistics.</span></div>
+        <div class="proof"><div class="n">03</div><b>Temperature Control</b><span>Frozen and refrigerated warehousing for cold-chain products.</span></div>
+        <div class="proof"><div class="n">04</div><b>Market Coverage</b><span>Food service, chain retail and wholesale channels.</span></div>
+      </div>
+
+      <div class="visual-block">
+        <img src="assets/whh-facility.png" alt="WHH facility and warehouse operations" />
+      </div>
+    </section>
+
+    <section class="section" id="industries">
+      <div class="section-head">
+        <div class="kicker">Who we serve</div>
+        <h2>Built around real B2B buying needs.</h2>
+        <p class="lead">The same website can support both growing F&B operators and larger procurement teams without making WHH look like a low-price retail wholesaler.</p>
+      </div>
+      <div class="industries">
+        <div class="industry"><div class="dot">H</div><div><b>Hotels & Hospitality</b><span>Supply reliability, compliance, delivery and consistent standards.</span></div></div>
+        <div class="industry"><div class="dot">C</div><div><b>Chain Restaurants</b><span>Recurring supply, consistent specifications and multi-outlet needs.</span></div></div>
+        <div class="industry"><div class="dot">K</div><div><b>Central Kitchens & Catering</b><span>Commercial volume, replenishment and product consistency.</span></div></div>
+        <div class="industry"><div class="dot">R</div><div><b>Retail & Distribution</b><span>Chain retail, convenience and wholesale channel experience.</span></div></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div class="kicker">Buyer journey</div>
+        <h2>From first impression to sales conversation.</h2>
+      </div>
+      <div class="journey">
+        <div class="step"><div class="step-num">1</div><div class="step-body"><b>Understand WHH</b><p>History, scale, channels and business credibility appear early.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><b>Find the right supply category</b><p>Frozen-food products are clear and easy to discover.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><b>Validate capability</b><p>Warehouse, cold chain, logistics and quality proof reduce procurement risk.</p></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><b>Request business pricing</b><p>The buyer enters a qualified one-to-one sales conversation.</p></div></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div class="kicker">Credibility</div>
+        <h2>Show the proof behind the company.</h2>
+        <p class="lead">Real facilities, certifications, operational photos and channel coverage should carry more weight than decorative stock imagery.</p>
+      </div>
+      <div class="cert-box"><img src="assets/whh-certs.png" alt="WHH certifications and accreditations" /></div>
+      <div class="split-card" style="margin-top:10px">
+        <div class="mini-card"><b>Quality & compliance</b><span>Certification details should be published only after ownership and validity are confirmed.</span></div>
+        <div class="mini-card"><b>Real operations</b><span>Warehouse, loading, fleet and delivery imagery builds procurement trust faster.</span></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div class="kicker">Digital presence</div>
+        <h2>Social creates visibility. The website builds trust.</h2>
+        <p class="lead">Content can show products, deliveries, facilities and people — then direct interested buyers into a stronger corporate destination and enquiry flow.</p>
+      </div>
+      <article class="story-card">
+        <img src="assets/digital-presence.png" alt="Digital and social presence for food distribution" />
+        <div class="story-copy">
+          <h3>Built for what comes next</h3>
+          <p>The same foundation can later support search, SEO, campaign landing pages, analytics, retargeting and lead-source tracking without rebuilding the site.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="inquiry" id="contact">
+      <div class="kicker">Business enquiry</div>
+      <h2>Tell us what your business needs.</h2>
+      <p>Business pricing can vary by product, volume, specification and delivery requirement. Submit your details and the WHH team can follow up directly.</p>
+
+      <form id="quoteForm">
+        <div>
+          <label for="company">Company name</label>
+          <input id="company" name="company" placeholder="Your company" required>
+        </div>
+        <div>
+          <label for="name">Contact person</label>
+          <input id="name" name="name" placeholder="Your name" required>
+        </div>
+        <div>
+          <label for="contact">Phone / Email</label>
+          <input id="contact" name="contact" placeholder="+60 / email" required>
+        </div>
+        <div>
+          <label for="type">Business type</label>
+          <select id="type" name="type">
+            <option>Restaurant / Café</option>
+            <option>Chain F&B</option>
+            <option>Hotel / Hospitality</option>
+            <option>Catering / Central Kitchen</option>
+            <option>Retail / Distribution</option>
+            <option>Other B2B</option>
+          </select>
+        </div>
+        <div>
+          <label for="interest">Product interest</label>
+          <input id="interest" name="interest" placeholder="e.g. poultry, beef, seafood">
+        </div>
+        <div>
+          <label for="volume">Estimated monthly requirement</label>
+          <input id="volume" name="volume" placeholder="Optional">
+        </div>
+        <div>
+          <label for="location">Delivery location</label>
+          <input id="location" name="location" placeholder="City / area">
+        </div>
+        <div>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell us what you are sourcing"></textarea>
+        </div>
+        <button class="submit" type="submit">Request Business Pricing</button>
+      </form>
+      <p class="fine">Demo static form: connect this form to Formspree, Basin, HubSpot, Zoho, WhatsApp or your preferred CRM before launch.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="foot-brand">WHH Group</div>
+    <p>Food import/export, processing, wholesale, retail and B2B food service. Established 1995.</p>
+    <p>© 2026 WHH Group. Website concept prepared for mobile-first deployment.</p>
+  </footer>
+
+  <div class="sticky-cta">
+    <a href="#frozen">View Products</a>
+    <a href="#contact">Request Quote</a>
+  </div>
+</div>
+
+<script>
+  const drawer = document.getElementById('drawer');
+  document.getElementById('menuBtn').addEventListener('click',()=>drawer.classList.add('open'));
+  document.getElementById('closeBtn').addEventListener('click',()=>drawer.classList.remove('open'));
+  drawer.addEventListener('click',(e)=>{ if(e.target===drawer) drawer.classList.remove('open'); });
+  drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>drawer.classList.remove('open')));
+
+  document.getElementById('quoteForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const btn = this.querySelector('.submit');
+    const old = btn.textContent;
+    btn.textContent = 'Enquiry captured — connect form service to receive submissions';
+    btn.disabled = true;
+    setTimeout(()=>{btn.textContent=old;btn.disabled=false;},3500);
+  });
+</script>
+</body>
+</html>
